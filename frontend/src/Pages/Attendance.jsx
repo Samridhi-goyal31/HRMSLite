@@ -20,8 +20,6 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import Loading from "../components/Loading";
 
-import dayjs from "dayjs";
-
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -32,7 +30,6 @@ export default function Attendance() {
 
   const [attendance, setAttendance] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-
   const [employees, setEmployees] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -44,10 +41,8 @@ export default function Attendance() {
   });
 
   useEffect(() => {
-
     fetchAttendance();
     fetchEmployees();
-
   }, []);
 
   const fetchAttendance = async () => {
@@ -58,14 +53,14 @@ export default function Attendance() {
 
       const res = await api.get("/attendance/");
 
-      if (res.data) {
+      if (res.data.status) {
 
-        setAttendance(res.data);
-        setFilteredData(res.data);
+        setAttendance(res.data.data);
+        setFilteredData(res.data.data);
 
       } else {
 
-        setError("Failed to load attendance");
+        setError(res.data.message);
 
       }
 
@@ -87,9 +82,9 @@ export default function Attendance() {
 
       const res = await api.get("/employees/");
 
-      if (res.data) {
+      if (res.data.status) {
 
-        setEmployees(res.data);
+        setEmployees(res.data.data);
 
       }
 
@@ -215,16 +210,12 @@ export default function Attendance() {
               }
             />
 
-            {/* Filter Button */}
-
             <Button
               variant="contained"
               onClick={applyFilter}
             >
               Filter
             </Button>
-
-            {/* Reset Button */}
 
             <Button
               variant="outlined"
