@@ -89,7 +89,9 @@ export default function MarkAttendance() {
         setIsLoading(false);
         setSeverity("error");
         setMessage(res.message);
-
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       }
 
     } catch {
