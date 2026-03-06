@@ -285,7 +285,7 @@ export default function Attendance() {
                   <TableCell>{index + 1}</TableCell>
 
                   <TableCell>
-                    {att.employee_name || att.employee}
+                    {att.employeeName || att.employee}
                   </TableCell>
 
                   <TableCell>
