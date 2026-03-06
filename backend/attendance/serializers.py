@@ -2,9 +2,10 @@ from rest_framework import serializers
 from .models import Attendance
 
 class AttendanceSerializer(serializers.ModelSerializer):
+    employeeName = serializers.CharField(source="employee.fullName", read_only=True)
+
     class Meta:
         model = Attendance
-        employeeName = serializers.CharField(source="employee.fullName", read_only=True)
         fields = ["id", "employee", "employeeName", "date", "status"]
 
     def validate(self, data):
