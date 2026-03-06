@@ -4,7 +4,8 @@ from .models import Attendance
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
-        fields = ['id','employee','date','status']
+        employeeName = serializers.CharField(source="employee.fullName", read_only=True)
+        fields = ["id", "employee", "employeeName", "date", "status"]
 
     def validate(self, data):
         # unique constraint handled in DB; but nice to check here
