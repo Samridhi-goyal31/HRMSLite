@@ -96,9 +96,7 @@ WSGI_APPLICATION = 'hrms.wsgi.application'
 # }
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=False,  # set True if provider requires SSL
+        default=os.environ.get("DATABASE_URL")
     )
 }
 
