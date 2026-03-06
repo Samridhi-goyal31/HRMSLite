@@ -28,7 +28,7 @@ export default function AddEmployee() {
 
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("success");
-
+  const [isLoading, setIsLoading] = useState(false);
   const validate = () => {
 
     let newErrors = {};
@@ -62,12 +62,11 @@ export default function AddEmployee() {
     if (!validate()) return;
 
     try {
-
+      setIsLoading(true);
       const res = await api.post("/employees/", form);
-    console.log(res);
-
+    
       if (res.ok === true) {
-
+        setIsLoading(false);
         setSeverity("success");
         setMessage(res.message);
 
@@ -82,14 +81,14 @@ export default function AddEmployee() {
         }, 1200);
 
       } else {
-
+        setIsLoading(false);
         setSeverity("error");
         setMessage(res.message);
 
       }
 
     } catch (err) {
-
+      setIsLoading(false);
       setSeverity("error");
       setMessage("Something went wrong");
 
@@ -180,13 +179,15 @@ export default function AddEmployee() {
             <Button
               variant="contained"
               onClick={handleSubmit}
+              disabled={isLoading}
             >
-              Save
+              {isLoading ? "Saving..." : "Save"}
             </Button>
 
             <Button
               variant="outlined"
               onClick={() => navigate("/employees")}
+              disabled={isLoading}
             >
               Cancel
             </Button>

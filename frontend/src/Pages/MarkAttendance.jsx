@@ -25,6 +25,7 @@ export default function MarkAttendance() {
   const navigate = useNavigate();
 
   const [employees, setEmployees] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [form, setForm] = useState({
     employee: "",
@@ -42,7 +43,7 @@ export default function MarkAttendance() {
   const fetchEmployees = async () => {
 
     try {
-
+      
       const res = await api.get("/employees/");
 
       if (res.ok) {
@@ -72,11 +73,11 @@ export default function MarkAttendance() {
     };
 
     try {
-
+      setIsLoading(true);
       const res = await api.post("/attendance/", payload);
 
       if (res.ok) {
-
+        setIsLoading(false);
         setSeverity("success");
         setMessage(res.message);
 
@@ -85,7 +86,7 @@ export default function MarkAttendance() {
         }, 1200);
 
       } else {
-
+        setIsLoading(false);
         setSeverity("error");
         setMessage(res.message);
 
@@ -93,6 +94,7 @@ export default function MarkAttendance() {
 
     } catch {
 
+      setIsLoading(false);
       setSeverity("error");
       setMessage("Something went wrong");
 
@@ -115,6 +117,7 @@ export default function MarkAttendance() {
             {message}
           </Alert>
         )}
+
 
         <Box
           sx={{
@@ -188,13 +191,15 @@ export default function MarkAttendance() {
             <Button
               variant="contained"
               onClick={handleSubmit}
+              disabled={isLoading}
             >
-              Mark Attendance
+            {isLoading ? "Marking Attendance..." : "Mark Attendance"}
             </Button>
 
             <Button
               variant="outlined"
               onClick={() => navigate("/attendance")}
+              disabled={isLoading}
             >
               Cancel
             </Button>
@@ -202,7 +207,7 @@ export default function MarkAttendance() {
           </Box>
 
         </Box>
-
+          
       </Paper>
 
     </Container>
