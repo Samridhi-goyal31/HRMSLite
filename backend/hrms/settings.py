@@ -27,10 +27,18 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = [
+    "hrms-backend-p96k.onrender.com",
+    ".vercel.app",
+    "localhost",
+    "127.0.0.1",
+]
 # CORS allowed origins (comma separated)
 CORS_ALLOW_ALL_ORIGINS = True
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+    "https://hrms-backend-p96k.onrender.com",
+]
 # Application definition
 
 INSTALLED_APPS = [
