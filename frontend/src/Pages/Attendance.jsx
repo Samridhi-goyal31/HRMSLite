@@ -58,14 +58,14 @@ export default function Attendance() {
 
       const res = await api.get("/attendance/");
 
-      if (res.ok) {
+      if (res.data) {
 
         setAttendance(res.data);
         setFilteredData(res.data);
 
       } else {
 
-        setError(res.message);
+        setError("Failed to load attendance");
 
       }
 
@@ -87,7 +87,7 @@ export default function Attendance() {
 
       const res = await api.get("/employees/");
 
-      if (res.ok) {
+      if (res.data) {
 
         setEmployees(res.data);
 
@@ -108,7 +108,7 @@ export default function Attendance() {
     if (filters.employee) {
 
       data = data.filter(
-        (item) => item.employee === filters.employee
+        (item) => item.employeeName === filters.employee
       );
 
     }
@@ -197,7 +197,7 @@ export default function Attendance() {
 
               {employees.map((emp) => (
 
-                <MenuItem key={emp.id} value={emp.id}>
+                <MenuItem key={emp.id} value={emp.fullName}>
                   {emp.fullName}
                 </MenuItem>
 
@@ -205,7 +205,7 @@ export default function Attendance() {
 
             </Select>
 
-            {/* Material Date Picker */}
+            {/* Date Filter */}
 
             <DatePicker
               label="Filter by Date"
@@ -285,7 +285,7 @@ export default function Attendance() {
                   <TableCell>{index + 1}</TableCell>
 
                   <TableCell>
-                    {att.employeeName || att.employee}
+                    {att.employeeName}
                   </TableCell>
 
                   <TableCell>
