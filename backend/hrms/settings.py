@@ -29,14 +29,11 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 # CORS allowed origins (comma separated)
-CORS_ALLOWED_ORIGINS = [u for u in os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",") if u]
-
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
