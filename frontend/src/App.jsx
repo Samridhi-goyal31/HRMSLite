@@ -3,8 +3,8 @@ import Employees from './pages/Employees';
 import Attendance from './pages/Attendance';
 import './App.css'
 import NavBar from './components/NavBar';
-import AddEmployee from './pages/AddEmployee';
-import MarkAttendance from './pages/MarkAttendance';
+import AddEmployee from './Pages/AddEmployee';
+import MarkAttendance from './Pages/MarkAttendance';
 
 function App() {
   return (
