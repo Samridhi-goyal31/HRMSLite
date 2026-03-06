@@ -56,7 +56,6 @@ export default function Attendance() {
     if (res.data.status) {
 
       const data = res.data.data;
-      console.log(data);
       setAttendance(data);
       setFilteredData(data);
 
@@ -278,7 +277,7 @@ export default function Attendance() {
                   <TableCell>{index + 1}</TableCell>
 
                   <TableCell>
-                    {att.employeeName}
+                    {employees.find((emp) => emp.id === att.employee)?.fullName || att.employeeName}
                   </TableCell>
 
                   <TableCell>
