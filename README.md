@@ -16,7 +16,7 @@ Select a framework:
 STEP 2: npm i axios @mui/material @emotion/react @emotion/styled @mui/icons-material react-router-dom
 
 ### BACKEND SETUP
-
+mysql://root:AlOpLCNFUGRyAlxkhhYqxVzCyRmrzxPg@tramway.proxy.rlwy.net:38676/railway
 The backend is a Django REST framework application located in the `backend/` folder. Follow these steps to get it running locally:
 
 1. **Create a Python environment** (recommended to use `venv` or `virtualenv`):
@@ -37,7 +37,7 @@ The backend is a Django REST framework application located in the `backend/` fol
    - Copy `.env.example` (if provided) or create a new `.env` file in `backend/` and set values for `DATABASE_URL`, `SECRET_KEY`, etc.
    - Example:
      ```env
-     SECRET_KEY=Test@123
+     SECRET_KEY=DJANGO_SECRET_KEY
      DEBUG=True
      DJANGO_SECRET=Test@123
      DB_NAME=hrms_db

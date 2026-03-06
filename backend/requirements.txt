@@ -9,3 +9,5 @@ packaging==26.0
 python-dotenv==1.2.2
 sqlparse==0.5.5
 typing_extensions==4.15.0
+dj-database-url==1.0.0
+whitenoise==6.12.0
