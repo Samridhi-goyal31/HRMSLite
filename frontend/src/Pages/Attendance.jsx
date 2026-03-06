@@ -47,34 +47,36 @@ export default function Attendance() {
 
   const fetchAttendance = async () => {
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
+  try {
 
-      const res = await api.get("/attendance/");
+    const res = await api.get("/attendance/");
 
-      if (res.data.status) {
+    if (res.data.status) {
 
-        setAttendance(res.data.data);
-        setFilteredData(res.data.data);
+      const data = res.data.data;
+      console.log(data);
+      setAttendance(data);
+      setFilteredData(data);
 
-      } else {
+    } else {
 
-        setError(res.data.message);
-
-      }
-
-    } catch {
-
-      setError("Something went wrong");
-
-    } finally {
-
-      setLoading(false);
+      setError(res.data.message);
 
     }
 
-  };
+  } catch {
+
+    setError("Something went wrong");
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+};
 
   const fetchEmployees = async () => {
 
