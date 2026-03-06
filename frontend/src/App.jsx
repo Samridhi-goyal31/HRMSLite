@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Employees from './pages/Employees';
-import Attendance from './pages/Attendance';
+import Employees from './Pages/Employees';
+import Attendance from './Pages/Attendance';
 import './App.css'
 import NavBar from './components/NavBar';
 import AddEmployee from './Pages/AddEmployee';
